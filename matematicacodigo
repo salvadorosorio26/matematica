@@ -1,0 +1,104 @@
+moedas_disponiveis = {
+    'USD': 'Dólar Americano',
+    'YEN': 'Iene Japonês',
+    'BRL': 'Real Brasileiro',
+    'GBP': 'Libra Esterlina',
+    'AUD': 'Dólar Australiano',
+    'CAD': 'Dólar Canadense',
+    'CHF': 'Franco Suíço',
+    'CNY': 'Yuan Chinês',
+    'SEK': 'Coroa Sueca',
+    'MXN': 'Peso Mexicano',
+    'NZD': 'Dólar da Nova Zelândia',
+    'SGD': 'Dólar de Singapura',
+    'HKD': 'Dólar de Hong Kong',
+    'NOK': 'Coroa Norueguesa',
+    'KRW': 'Won Sul-Coreano',
+    'TRY': 'Lira Turca',
+    'INR': 'Rupia Indiana',
+    'RUB': 'Rublo Russo',
+    'ZAR': 'Rand Sul-Africano',
+    'DAK': 'Dólar Dakotan',
+    'AOA': 'Kwanza Angolano'
+}
+
+taxas_de_conversao = {
+    ('USD', 'EUR'): 0.89,
+    ('YEN', 'EUR'): 0.0079,
+    ('BRL', 'EUR'): 0.17,
+    ('GBP', 'EUR'): 1.19,
+    ('AUD', 'EUR'): 0.63,
+    ('CAD', 'EUR'): 0.67,
+    ('CHF', 'EUR'): 0.94,
+    ('CNY', 'EUR'): 0.14,
+    ('SEK', 'EUR'): 0.1,
+    ('MXN', 'EUR'): 0.565,
+    ('NZD', 'EUR'): 0.6,
+    ('SGD', 'EUR'): 0.61,
+    ('HKD', 'EUR'): 0.11,
+    ('NOK', 'EUR'): 0.094,
+    ('KRW', 'EUR'): 0.00069,
+    ('TRY', 'EUR'): 0.11,
+    ('INR', 'EUR'): 0.012,
+    ('RUB', 'EUR'): 0.011,
+    ('ZAR', 'EUR'): 0.057,
+    ('DAK', 'EUR'): 0.00018,
+    ('AOA', 'EUR'): 0.0014,
+    ('USD', 'YEN'): 110.16,
+    ('USD', 'BRL'): 5.88,
+    ('USD', 'GBP'): 0.75,
+    ('USD', 'AUD'): 1.58,
+    ('USD', 'CAD'): 1.49,
+    ('USD', 'CNY'): 6.97,
+    ('USD', 'SEK'): 8.87,
+    ('USD', 'MXN'): 23.26,
+    ('USD', 'NZD'): 1.67,
+    ('USD', 'SGD'): 1.63,
+    ('USD', 'HKD'): 7.82,
+    ('USD', 'NOK'): 8.48,
+    ('USD', 'KRW'): 1126.47,
+    ('USD', 'TRY'): 13.38,
+    ('USD', 'INR'): 76.92,
+    ('USD', 'RUB'): 80.36,
+    ('USD', 'ZAR'): 14.57,
+    ('USD', 'DAK'): 5566.67,
+    ('YEN', 'BRL'): 0.053,
+    ('YEN', 'GBP'): 0.0068,
+    ('YEN', 'AUD'): 0.014,
+    ('YEN', 'CAD'): 0.013,
+    ('YEN', 'CNY'): 0.19,
+    ('YEN', 'SEK'): 0.25,
+    ('YEN', 'MXN'): 0.65,
+    ('YEN', 'NZD'): 0.047,
+    ('YEN', 'SGD'): 0.046,
+    ('YEN', 'HKD'): 0.22,
+    ('YEN', 'NOK'): 0.24,
+    ('YEN', 'KRW'): 31.85,
+    ('YEN', 'TRY'): 0.38,
+    ('YEN', 'INR'): 2.21,
+    ('YEN', 'RUB'): 2.31,
+    ('YEN', 'ZAR'): 0.42,
+    ('YEN', 'DAK'): 162.78,
+}
+
+print("Moedas disponíveis:")
+for abreviacao, nome in moedas_disponiveis.items():
+    print(f"{abreviacao} - {nome}")
+
+try:
+    valor = float(input("Introduza o valor a converter: "))
+except ValueError:
+    print("Por favor, insira um valor numérico válido.")
+    exit()
+
+moeda_origem = input("Indique a moeda de origem (ex.: BRL, USD, EUR, GBP): ").upper()
+moeda_destino = input("Indique a moeda de destino (ex.: BRL, USD, EUR, GBP): ").upper()
+
+if (moeda_origem, moeda_destino) in taxas_de_conversao:
+    valor_convertido = valor * taxas_de_conversao
+    print(f"{valor} {moeda_origem} equivale a {valor_convertido:.2f} {moeda_destino}")
+elif (moeda_destino, moeda_origem) in taxas_de_conversao:
+    valor_convertido = valor / taxas_de_conversao[(moeda_destino, moeda_origem)]
+    print(f"{valor} {moeda_origem} equivale a {valor_convertido:.2f} {moeda_destino}")
+else:
+    print("Conversão não disponível para o par de moedas especificado.")
